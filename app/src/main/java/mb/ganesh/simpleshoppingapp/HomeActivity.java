@@ -2,6 +2,7 @@ package mb.ganesh.simpleshoppingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        getWindow().setStatusBarColor(ContextCompat.getColor(this , R.color.home));
 
         computerCard = findViewById(R.id.computerCard);
         mensCard = findViewById(R.id.menCard);

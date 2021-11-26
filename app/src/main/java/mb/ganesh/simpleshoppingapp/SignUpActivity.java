@@ -2,6 +2,7 @@ package mb.ganesh.simpleshoppingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +20,8 @@ import org.json.JSONObject;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextInputLayout userNameFieldLayout , phoneNoFieldLayout , passwordFieldLayout;
-    TextInputEditText userNameField , phoneNoField , passwordField;
+    TextInputLayout userNameFieldLayout, phoneNoFieldLayout, passwordFieldLayout;
+    TextInputEditText userNameField, phoneNoField, passwordField;
     MaterialButton signUpBtn;
     TextView signInBtn;
 
@@ -29,6 +30,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this , R.color.signs));
 
         userNameField = findViewById(R.id.userNameField);
         phoneNoField = findViewById(R.id.phoneNoField);
@@ -45,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignUpActivity.this , SignInActivity.class));
+                startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
             }
         });
 
@@ -103,7 +106,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-
 //        signUpBtn onClick
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,28 +114,38 @@ public class SignUpActivity extends AppCompatActivity {
                 String ph = phoneNoField.getText().toString().trim();
                 String pa = passwordField.getText().toString().trim();
 
-                if(TextUtils.isEmpty(us) || TextUtils.isEmpty(ph) || TextUtils.isEmpty(pa)){
+                if (TextUtils.isEmpty(us) && TextUtils.isEmpty(ph) && TextUtils.isEmpty(pa)) {
                     userNameFieldLayout.setError("Please enter user name");
                     phoneNoFieldLayout.setError("Please enter phone no");
                     passwordFieldLayout.setError("Please enter password");
                     userNameFieldLayout.setErrorEnabled(true);
                     phoneNoFieldLayout.setErrorEnabled(true);
-                    passwordFieldLayout.setErrorEnabled(true);
-                }else {
+                    passwordFieldLayout.setError("Please enter password");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(us)) {
+                    userNameFieldLayout.setError("Please enter user name");
+                    userNameFieldLayout.setErrorEnabled(true);
+                } else if (TextUtils.isEmpty(ph)) {
+                    phoneNoFieldLayout.setError("Please enter phone no");
+                    phoneNoFieldLayout.setErrorEnabled(true);
+                } else if (TextUtils.isEmpty(pa)) {
+                    passwordFieldLayout.setError("Please enter password");
+                    passwordFieldLayout.setError("Please enter password");
+                } else {
                     try {
                         JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("userName" , us);
-                        jsonObject.put("phoneNo" , ph);
-                        jsonObject.put("password" , pa);
-                        startActivity(new Intent(SignUpActivity.this , HomeActivity.class).putExtra("userData" , jsonObject.toString()));
-                    }catch (Exception e){
+                        jsonObject.put("userName", us);
+                        jsonObject.put("phoneNo", ph);
+                        jsonObject.put("password", pa);
+                        startActivity(new Intent(SignUpActivity.this, HomeActivity.class).putExtra("userData", jsonObject.toString()));
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
         });
-
-
 
 
     }

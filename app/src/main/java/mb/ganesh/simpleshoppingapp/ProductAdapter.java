@@ -1,6 +1,7 @@
 package mb.ganesh.simpleshoppingapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.card.MaterialCardView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import javax.sql.StatementEvent;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrHolder> {
 
@@ -34,12 +41,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
 
     @Override
     public void onBindViewHolder(@NonNull ProducrHolder holder, int position) {
-        Log.e("model Data" , list.get(position).getName());
+        String name = list.get(position).getName();
+        String price = list.get(position).getPrice();
+        String quantity = list.get(position).getQuantity();
+        String image = list.get(position).getImage();
 
-        holder.itemName.setText(list.get(position).getName());
-        holder.itemPrice.setText( "Price : " + "₹"+ list.get(position).getPrice());
-        holder.itemQuantity.setText("Quantity : "  + list.get(position).getQuantity());
-        Glide.with(context).load(list.get(position).getImage()).into(holder.itemImage);
+        holder.itemName.setText(name);
+        holder.itemPrice.setText( "Price : " + "₹"+ price);
+        holder.itemQuantity.setText("Quantity : "  + quantity);
+        Glide.with(context).load(image).into(holder.itemImage);
+
+        holder.itemCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                JSONObject currData = new JSONObject();
+                try {
+                    currData.put("name", name);
+                    currData.put("price", price);
+                    currData.put("quantity", quantity);
+                    currData.put("image", image);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.e("Current Data" , currData.toString());
+                context.startActivity(new Intent(context , ProductDetailsActivity.class).putExtra("item" , currData.toString()));
+            }
+        });
 
     }
 
@@ -53,7 +80,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
 
         TextView itemName ,itemQuantity , itemPrice ;
         ImageView itemImage;
-
+        MaterialCardView itemCard;
 
         public ProducrHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +88,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
             itemName = itemView.findViewById(R.id.itemName);
             itemQuantity = itemView.findViewById(R.id.itemQuantity);
             itemPrice = itemView.findViewById(R.id.itemPrice);
+            itemCard = itemView.findViewById(R.id.itemCard);
         }
     }
 }

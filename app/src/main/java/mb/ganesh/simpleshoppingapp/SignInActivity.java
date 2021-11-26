@@ -2,8 +2,10 @@ package mb.ganesh.simpleshoppingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -21,14 +23,17 @@ public class SignInActivity extends AppCompatActivity {
 
     MaterialButton signInBtn;
     TextView signUpBtn;
-    TextInputLayout phoneNoFieldLayout , passwordFieldLayout;
-    TextInputEditText phoneNoField , passwordField;
+    TextInputLayout phoneNoFieldLayout, passwordFieldLayout;
+    TextInputEditText phoneNoField, passwordField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this , R.color.signs));
 
         signInBtn = findViewById(R.id.signInBtn);
         signUpBtn = findViewById(R.id.signUpBtn);
@@ -41,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignInActivity.this , SignUpActivity.class));
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
             }
         });
 
@@ -90,18 +95,27 @@ public class SignInActivity extends AppCompatActivity {
                 String ph = phoneNoField.getText().toString().trim();
                 String pa = passwordField.getText().toString().trim();
 
-                if(TextUtils.isEmpty(ph) || TextUtils.isEmpty(pa)){
+                if (TextUtils.isEmpty(ph) && TextUtils.isEmpty(pa)) {
                     phoneNoFieldLayout.setErrorEnabled(true);
                     phoneNoFieldLayout.setError("Please Enter Phone Number");
                     passwordFieldLayout.setErrorEnabled(true);
                     passwordFieldLayout.setError("Please Enter Password");
-                }else {
+                    return;
+                }
+
+                if (TextUtils.isEmpty(ph)) {
+                    phoneNoFieldLayout.setErrorEnabled(true);
+                    phoneNoFieldLayout.setError("Please Enter Phone Number");
+                } else if (TextUtils.isEmpty(pa)) {
+                    passwordFieldLayout.setErrorEnabled(true);
+                    passwordFieldLayout.setError("Please Enter Password");
+                } else {
                     try {
                         JSONObject jsonObject = new JSONObject();
-                        jsonObject.put("phoneNo" , ph);
-                        jsonObject.put("password" , pa);
-                        startActivity(new Intent(SignInActivity.this , HomeActivity.class).putExtra("userData" , jsonObject.toString()));
-                    }catch (Exception e){
+                        jsonObject.put("phoneNo", ph);
+                        jsonObject.put("password", pa);
+                        startActivity(new Intent(SignInActivity.this, HomeActivity.class).putExtra("userData", jsonObject.toString()));
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }

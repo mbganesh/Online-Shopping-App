@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simple Shopping App</string>
+
+
+    <string name="signin_page"><font fgcolor="#010101"><b>*</b></font> New User?<font fgcolor="#009DAE"><b> Sign Up Here</b></font>.</string>
+    <string name="signup_page"><font fgcolor="#010101"><b>*</b></font> Existing User ?<font fgcolor="#009DAE"><b> Sign In </b></font>.</string>
 </resources>

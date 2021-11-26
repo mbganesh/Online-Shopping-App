@@ -13,11 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleShoppingApp">
         <activity
+            android:name=".MyOrdersActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
-            android:screenOrientation="portrait"
+            android:exported="true"
             android:noHistory="true"
-            android:exported="true" >
-
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,11 +37,13 @@
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
+            android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SignInActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"
             android:exported="true"

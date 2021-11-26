@@ -2,6 +2,7 @@ package mb.ganesh.simpleshoppingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +35,7 @@ public class ProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        getWindow().setStatusBarColor(ContextCompat.getColor(this , R.color.col_black));
         key = getIntent().getStringExtra("pKey");
         Log.e("KEY" , key + "");
 
