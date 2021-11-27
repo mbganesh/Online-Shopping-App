@@ -18,7 +18,9 @@ import com.google.android.material.card.MaterialCardView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.sql.StatementEvent;
 
@@ -47,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
         String image = list.get(position).getImage();
 
         holder.itemName.setText(name);
-        holder.itemPrice.setText( "Price : " + "₹"+ price);
+        holder.itemPrice.setText( "Price : " + "₹"+  getAmountFormat(price));
         holder.itemQuantity.setText("Quantity : "  + quantity);
         Glide.with(context).load(image).into(holder.itemImage);
 
@@ -67,6 +69,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
                 context.startActivity(new Intent(context , ProductDetailsActivity.class).putExtra("item" , currData.toString()));
             }
         });
+
 
     }
 
@@ -91,4 +94,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
             itemCard = itemView.findViewById(R.id.itemCard);
         }
     }
+
+    private String getAmountFormat(String price) {
+        int pri = Integer.parseInt(price);
+
+        return NumberFormat.getNumberInstance(Locale.getDefault()).format(pri);
+
+    }
+
 }

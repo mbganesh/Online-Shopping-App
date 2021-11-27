@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,6 +19,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONObject;
+
+import java.util.Random;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -123,4 +126,5 @@ public class SignInActivity extends AppCompatActivity {
         });
 
     }
+
 }
