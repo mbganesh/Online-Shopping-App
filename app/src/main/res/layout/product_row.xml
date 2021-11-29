@@ -31,7 +31,7 @@
                 android:layout_height="250dp"
                 android:src="@drawable/phone_pic"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/materialCardView"
+                app:layout_constraintEnd_toStartOf="@+id/addToCartCard"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,14 +74,14 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+                app:layout_constraintBottom_toTopOf="@+id/addToCartCard"
                 app:layout_constraintEnd_toEndOf="@+id/itemQuantity"
                 app:layout_constraintStart_toStartOf="@+id/itemQuantity"
                 app:layout_constraintTop_toBottomOf="@+id/itemQuantity" />
 
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView"
+                android:id="@+id/addToCartCard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:clickable="true"

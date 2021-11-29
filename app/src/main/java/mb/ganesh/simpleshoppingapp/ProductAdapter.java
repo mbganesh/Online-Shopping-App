@@ -24,7 +24,7 @@ import java.util.Locale;
 
 import javax.sql.StatementEvent;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
 
     Context context;
     ArrayList<ProductModel> list;
@@ -36,13 +36,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
 
     @NonNull
     @Override
-    public ProducrHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_row , parent , false);
-        return new ProducrHolder(view);
+        return new ProductHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProducrHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         String name = list.get(position).getName();
         String price = list.get(position).getPrice();
         String quantity = list.get(position).getQuantity();
@@ -70,6 +70,27 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
             }
         });
 
+        holder.addCartCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Log.e("Poso" , position + "");
+
+                JSONObject currData = new JSONObject();
+                try {
+                    currData.put("name", name);
+                    currData.put("price", price);
+                    currData.put("image", image);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+                Log.e("Add Tp Cart" , currData.toString());
+
+            }
+        });
 
     }
 
@@ -78,20 +99,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProducrH
         return list.size();
     }
 
-    public class ProducrHolder extends RecyclerView.ViewHolder{
+    public class ProductHolder extends RecyclerView.ViewHolder{
 
 
         TextView itemName ,itemQuantity , itemPrice ;
         ImageView itemImage;
-        MaterialCardView itemCard;
+        MaterialCardView itemCard , addCartCard;
 
-        public ProducrHolder(@NonNull View itemView) {
+        public ProductHolder(@NonNull View itemView) {
             super(itemView);
             itemImage = itemView.findViewById(R.id.itemImage);
             itemName = itemView.findViewById(R.id.itemName);
             itemQuantity = itemView.findViewById(R.id.itemQuantity);
             itemPrice = itemView.findViewById(R.id.itemPrice);
             itemCard = itemView.findViewById(R.id.itemCard);
+            addCartCard = itemView.findViewById(R.id.addToCartCard);
         }
     }
 

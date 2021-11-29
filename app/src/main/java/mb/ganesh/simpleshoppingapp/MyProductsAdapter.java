@@ -42,8 +42,8 @@ public class MyProductsAdapter extends RecyclerView.Adapter<MyProductsAdapter.My
         holder.proCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("Data" , productList.get(position).getArray() + "");
-                context.startActivity(new Intent(context , ProductListActivity.class).putExtra("proData" , productList.get(position).getArray() + ""));
+                Log.e("Data", productList.get(position).getArray() + "");
+                context.startActivity(new Intent(context, ProductListActivity.class).putExtra("proData", productList.get(position).getArray() + ""));
             }
         });
     }

@@ -19,12 +19,15 @@ public class SplashActivity extends AppCompatActivity {
 
         getWindow().setStatusBarColor(ContextCompat.getColor(this , R.color.splash));
 
+
+
+
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(SplashActivity.this , SignInActivity.class));
                 finish();
             }
-        },1200);
+        },3000);
     }
 }

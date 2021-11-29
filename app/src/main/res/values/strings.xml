@@ -4,4 +4,6 @@
 
     <string name="signin_page"><font fgcolor="#010101"><b>*</b></font> New User?<font fgcolor="#009DAE"><b> Sign Up Here</b></font>.</string>
     <string name="signup_page"><font fgcolor="#010101"><b>*</b></font> Existing User ?<font fgcolor="#009DAE"><b> Sign In </b></font>.</string>
+    <string name="please_wait">Please Wait...</string>
+    <string name="product_title">New Products</string>
 </resources>

@@ -120,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
                     passwordFieldLayout.setError("Please enter password");
                     userNameFieldLayout.setErrorEnabled(true);
                     phoneNoFieldLayout.setErrorEnabled(true);
-                    passwordFieldLayout.setError("Please enter password");
+                    passwordFieldLayout.setErrorEnabled(true);
                     return;
                 }
 
