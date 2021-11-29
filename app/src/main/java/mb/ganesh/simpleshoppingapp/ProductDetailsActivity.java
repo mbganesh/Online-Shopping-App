@@ -72,14 +72,6 @@ public class ProductDetailsActivity extends AppCompatActivity implements Adapter
             e.printStackTrace();
         }
 
-
-        for (int i = 0; i < count.length; i++) {
-            Log.e("count " , count[i]);
-        }
-
-
-
-
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(ProductDetailsActivity.this,
                 android.R.layout.simple_spinner_item,count);
 
